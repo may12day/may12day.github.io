@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mayank Devnani - Blog</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+	<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
+    <!-- Add favicon -->
+     <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+		<link rel="manifest" href="assets/site.webmanifest">
+    <style>
+	body {
+        font-family: 'Inter', sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
+
+	.header {
+	   text-align: center;
+	   padding: 30px 0 20px;
+	}
+	
+	.header h1 {
+    font-family: 'Arial', sans-serif; /* Changed font */
+    font-size: 2em; /* Reduced font size */
+    font-weight: 600; /* Adjusted font weight */
+}
+
+	.name-display {
+	   font-family: 'Inter', sans-serif;
+	   font-size: 100em;
+	   font-weight: 700;
+	   letter-spacing: -0.03em;
+	   margin-bottom: 0.2em;
+	   color: #2c3e50;
+	}
+
+	.container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+	
+	.blog-post-container {
+        max-width: 1250px;
+        margin: 20px auto;
+        padding: 40px 20px;
+    }
+
+	h1,
+	h2 {
+	   color: #000000;
+	   text-align: left;
+	}
+
+	h1 {
+	   font-size: 2.5em;
+	   margin-bottom: 0;
+	   text-align: center;
+	}
+
+	.subtitle {
+	   font-family: 'Inter', sans-serif;
+	   font-size: 1.2em;
+	   font-weight: 300;
+	   letter-spacing: 0.05em;
+	   color: #34495e;
+	   margin-top: 0;
+	   margin-bottom: 1.5em;
+	}
+
+	.social-icons {
+	   display: flex;
+	   justify-content: center;
+	   gap: 15px;
+	   margin: 20px 0;
+	}
+
+	.social-icons a {
+	   /*color: #000000;*/
+	   color: var(--header-color);
+	   font-size: 1.5em;
+	   transition: all 0.3s ease;
+	}
+
+	.social-icons a:hover {
+	   transform: translateY(-2px);
+	}
+
+	.social-icons .fa-x-twitter {
+	   color: #000000;
+	}
+
+	.social-icons .fa-linkedin {
+	   color: #0A66C2;
+	}
+
+	.code-block {
+	   background-color: #f8f9fa;
+	   padding: 15px;
+	   border-radius: 4px;
+	   font-family: 'Fira Code', monospace;
+	   font-size: 0.9em;
+	   margin-bottom: 20px;
+	   text-align: left;
+	   border: 1px solid #e0e0e0;
+	}
+
+	.section-header {
+	   position: relative;
+	   margin-bottom: 30px;
+	   padding-bottom: 10px;
+	   border-bottom: 2px solid #e0e0e0;
+	}
+
+	.section-header h2 {
+	   font-size: 1.8em;
+	   color: #000000;
+	   margin-bottom: 5px;
+	   position: relative;
+	   display: inline-block;
+	   transition: all 0.3s ease;
+	}
+
+	.section-header h2::after {
+	   content: '';
+	   position: absolute;
+	   bottom: -17px;
+	   left: 0;
+	   width: 0;
+	   height: 3px;
+	   background-color: #3498db;
+	   transition: width 0.3s ease;
+	   transform: translateX(var(--translateX, 0));
+	}
+
+	.section-header:hover h2::after {
+	   width: 100%;
+	}
+
+	/* Adjust spacing for better section separation */
+	.section {
+	   margin-bottom: 50px;
+	}
+
+	.technical-info-display {
+	   background-color: #1e1e1e;
+	   border-radius: 8px;
+	   overflow: hidden;
+	   font-family: 'Fira Code', monospace;
+	   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+
+	.terminal-header {
+	   background-color: #323233;
+	   padding: 10px;
+	   display: flex;
+	   gap: 8px;
+	}
+
+	.terminal-button {
+	   width: 12px;
+	   height: 12px;
+	   border-radius: 50%;
+	}
+
+	.terminal-button.red {
+	   background-color: #ff5f56;
+	}
+
+	.terminal-button.yellow {
+	   background-color: #ffbd2e;
+	}
+
+	.terminal-button.green {
+	   background-color: #27c93f;
+	}
+
+	.terminal-body {
+	   padding: 20px;
+	   color: #f8f8f2;
+	}
+
+	.command {
+	   color: #50fa7b;
+	}
+
+	.json-output {
+	   color: #f1fa8c;
+	   margin: 10px 0;
+	}
+
+	.skill-output {
+	   color: #8be9fd;
+	   word-wrap: break-word;
+	}
+
+	.about-content {
+	   text-align: left;
+	   font-size: 0.9em;
+	   font-family: 'Source Code Pro', monospace;
+	}
+
+	.skills {
+	   display: flex;
+	   flex-wrap: wrap;
+	   gap: 10px;
+	   justify-content: center;
+	}
+
+	.skill-tag {
+	   background-color: transparent;
+	   color: #2c3e50;
+	   border: 1.5px solid #e2e8f0;
+	   padding: 6px 12px;
+	   border-radius: 20px;
+	   font-size: 0.85em;
+	   font-weight: 500;
+	   transition: all 0.5s ease;
+	   position: relative;
+	   overflow: hidden;
+	}
+
+	.skill-tag::before {
+	   content: '';
+	   position: absolute;
+	   top: 0;
+	   left: -100%;
+	   width: 100%;
+	   height: 100%;
+	   background-color: #2d3748;
+	   transition: all 0.3s ease;
+	   z-index: -1;
+	}
+
+	.skill-tag:hover {
+	   background-color: #2d3748;
+	   color: #ffffff;
+	}
+
+	.skill-tag:hover::before {
+	   left: 0;
+	}
+
+	.skill-tag-project {
+	   background-color: #ffffff;
+	   color: #2d3748;
+	   padding: 4px 10px;
+	   border-radius: 12px;
+	   font-size: 0.8em;
+	   font-weight: 500;
+	   transition: all 0.2s ease;
+	   border: 1px solid #e2e8f0;
+	}
+
+	.skill-tag-project:hover {
+	   background-color: #2d3748;
+	   color: #ffffff;
+	}
+
+	.skills-container {
+	   display: grid;
+	   grid-template-columns: repeat(3, 1fr);
+	   gap: 20px;
+	}
+
+	.skill-category {
+	   break-inside: avoid;
+	   page-break-inside: avoid;
+	}
+
+	.category-title {
+	   font-size: 0.9em;
+	   font-weight: bold;
+	   margin-bottom: 10px;
+	   color: #555;
+	   text-transform: uppercase;
+	}
+
+	.category-skills {
+	   display: flex;
+	   flex-wrap: wrap;
+	   gap: 8px;
+	}
+
+	.btn-container {
+	   text-align: center;
+	   margin-top: 40px;
+	   margin-bottom: 20px;
+	}
+
+	.btn {
+	   display: inline-block;
+	   padding: 10px 20px;
+	   background: #000000;
+	   color: white;
+	   text-decoration: none;
+	   border-radius: 25px;
+	   font-size: 0.9em;
+	   font-weight: bold;
+	   transition: all 0.3s ease;
+	   border: 2px solid #000000;
+	}
+
+	.btn:hover {
+	   background: transparent;
+	   color: #000000;
+	}
+
+	.experience-item {
+	   margin-bottom: 20px;
+	   border-bottom: 1px solid #e0e0e0;
+	   font-size: 0.9em;
+	}
+
+	.experience-item:last-child {
+	   border-bottom: none;
+	}
+
+	.experience-title {
+	   font-weight: bold;
+	   margin-bottom: 5px;
+	}
+
+	.experience-company {
+	   font-style: italic;
+	   color: #666;
+	}
+
+	.experience-date {
+	   font-size: 1em;
+	   color: #aaa;
+	}
+
+	.experience-header {
+	   display: flex;
+	   justify-content: space-between;
+	   align-items: center;
+	}
+
+	.experience-company-name {
+	   font-weight: bold;
+	   font-size: 1.3em;
+	}
+
+	.experience-title {
+	   font-size: 1em;
+	   color: #888;
+	   font-style: italic;
+	   font-weight: normal;
+	   margin-top: 3px;
+	}
+
+	.experience-content {
+	   font-family: 'Source Code Pro', monospace;
+	}
+
+	.projects-grid {
+	   display: grid;
+	   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	   gap: 20px;
+	   margin-top: 20px;
+	}
+
+	.project-card {
+	   display: flex;
+	   flex-direction: column;
+	   justify-content: space-between;
+	   height: 100%;
+	   background-color: #f8f9fa;
+	   border-radius: 8px;
+	   padding: 20px;
+	   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	   transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.project-card:hover {
+	   transform: translateY(-5px);
+	   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+	}
+
+	.project-content {
+	   flex-grow: 1;
+	   display: flex;
+	   flex-direction: column;
+	}
+
+	.project-title {
+	   font-size: 1.2em;
+	   font-weight: bold;
+	   margin-bottom: 10px;
+	   font-style: italic;
+	   font-family: 'Ubuntu', sans-serif;
+	   display: flex;
+	   align-items: center;
+	}
+
+	.project-description {
+	   font-size: 0.9em;
+	   color: #666;
+	   font-family: 'Source Code Pro', monospace;
+	   flex-grow: 1;
+	}
+
+	.project-tags {
+	   display: flex;
+	   flex-wrap: wrap;
+	   gap: 6px;
+	   margin-bottom: 15px;
+	}
+
+	.project-tag {
+	   background-color: #e2e8f0;
+	   color: #2d3748;
+	   padding: 2px 8px;
+	   border-radius: 12px;
+	   font-size: 0.75em;
+	}
+
+	.github-btn {
+	   font-size: 0.8em;
+	   padding: 5px 10px;
+	   width: 68px;
+	   text-align: center;
+	   margin: 0 auto;
+	   display: inline-block;
+	}
+
+	.project-links {
+	   text-align: center;
+	   margin-top: 1px;
+	}
+
+	.project-status {
+	   background-color: #fce7f3;
+	   color: #9d174d;
+	   border-color: #fbcfe8;
+	   font-size: 0.6em;
+	   font-style: italic;
+	   padding: 2px 7px;
+	   border-radius: 2px;
+	   white-space: nowrap;
+	   margin-left: 9px;
+	   display: inline-block;
+	   height: 16px;
+	   line-height: 16px;
+	   text-align: center;
+	   border-width: 1px;
+	}
+
+	.project-status:hover {
+	   background-color: #fbcfe8;
+	   color: #9d174d;
+	}
+
+	.techy-download-container {
+	   display: flex;
+	   flex-direction: column;
+	   align-items: center;
+	   margin-top: 50px;
+	   margin-bottom: 50px;
+	}
+
+	.command-prompt {
+	   font-family: 'Fira Code', monospace;
+	   background-color: #f1f3f5;
+	   padding: 10px 15px;
+	   border-radius: 5px 5px 0 0;
+	   color: #333;
+	   width: 100%;
+	   max-width: 300px;
+	   box-sizing: border-box;
+	   height: 40px;
+	   display: flex;
+	   align-items: center;
+	}
+
+	.command-text {
+	   margin-left: 10px;
+	   color: #000000;
+	}
+
+	.techy-download-button {
+	   font-family: 'Fira Code', monospace;
+	   background-color: #000000;
+	   color: #fff;
+	   border: none;
+	   padding: 10px 15px;
+	   border-radius: 0 0 5px 5px;
+	   cursor: pointer;
+	   transition: background-color 0.3s ease;
+	   text-decoration: none;
+	   width: 100%;
+	   max-width: 300px;
+	   box-sizing: border-box;
+	   text-align: center;
+	}
+
+	.techy-download-button:hover {
+	   background-color: #333333;
+	   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.cursor {
+	   display: inline-block;
+	   width: 10px;
+	   height: 20px;
+	   background-color: #000000;
+	   animation: blink 0.7s infinite;
+	   margin-left: 2px;
+	   /* Added to give some space after the text */
+	}
+
+	@keyframes blink {
+	   0% {
+		  opacity: 0;
+	   }
+
+	   50% {
+		  opacity: 1;
+	   }
+
+	   100% {
+		  opacity: 0;
+	   }
+	}
+	
+	@keyframes scaleAnimation {
+	  0% { transform: scale(1); }
+	  50% { transform: scale(1.05); }
+	  100% { transform: scale(1); }
+	}
+	
+	@keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+	.name-display {
+	   font-family: 'Fira Code', monospace;
+	   font-size: 2.1em;
+	   text-align: center;
+	   margin-bottom: 10px;
+	}
+
+	.name-char {
+	   display: inline-block;
+	   opacity: 0;
+	   transform: translateY(20px);
+	   transition: opacity 0.3s ease, transform 0.3s ease;
+	}
+
+	.name-char.visible {
+	   opacity: 1;
+	   transform: translateY(0);
+	}
+
+	.name-underscore {
+	   display: inline-block;
+	   width: 15px;
+	   height: 3px;
+	   background-color: #000;
+	   margin-left: 5px;
+	   animation: blink 0.7s infinite;
+	}
+	
+	.blog-link {
+	  position: absolute;
+	  top: 20px;
+	  right: 20px;
+	  z-index: 1000;
+	}
+
+	.blog-link a {
+	  display: flex;
+	  align-items: center;
+	  text-decoration: none;
+	  color: #000000;
+	  font-size: 1em;
+	  transition: all 0.3s ease;
+	  padding: 5px 10px;
+	  border-radius: 20px;
+	  background-color: transparent;
+	  box-shadow: none;
+	  justify-content: center;
+	  gap: 5px;
+	}
+
+	.blog-link i {
+	  transition: all 0.3s ease;
+	}
+
+	.blog-link span {
+	  font-weight: 500;
+	}
+
+	.blog-link:hover a {
+	  background-color: #000000;
+	  color: #ffffff;
+	  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	  animation: scaleAnimation 0.5s ease-in-out;
+	}
+
+	.blog-link:hover i {
+	  transform: rotate(15deg);
+	}
+	
+	
+	.blog-post {
+        margin-bottom: 2em;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+		
+        }
+		
+
+        .blog-post:last-child {
+            border-bottom: none;
+        }
+
+        .blog-post h2, .blog-post h3, .blog-post h4 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    color: #2c3e50;
+	margin-top: 1em;
+    margin-bottom: 0.8em;
+}
+
+/* Improve readability of lists */
+.blog-post-content ul, .blog-post-content ol {
+    padding-left: 30px;
+    margin-bottom: 1.5em;
+}
+
+.blog-post-content li {
+    margin-bottom: 0.5em;
+}
+
+        .blog-post-meta {
+            font-size: 0.5em;
+            color: #666;
+            margin-left: 10px;
+        }
+		
+		.blog-post-inside-meta {
+            font-size: 0.8em;
+            color: #666;
+            margin-left: 10px;
+        }
+
+        .blog-post-content {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+	 letter-spacing: 0.3px; /* Slightly increase letter spacing */
+    word-spacing: 1px; /* Slightly increase word spacing */
+}
+
+.blog-post-content p {
+    margin-bottom: 1.5em; /* Increase space between paragraphs */
+}
+
+.blog-post p {
+font-family: 'Georgia', serif;
+    margin-bottom: 1.2em;
+	line-height: 23px;
+	font-size : 16px;
+}
+
+.highlight {
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-family: 'Inconsolata', monospace;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Ensure the highlight style works within paragraphs */
+p .highlight {
+    font-size: 16px /* Adjust if necessary to match surrounding text */
+}
+
+/* Add some spacing for better content separation */
+.blog-post > * + * {
+    margin-top: 1em;
+}
+
+        .blog-post-content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .back-to-portfolio {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .back-to-portfolio a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 20px;
+			gap: 10px;
+        }
+
+        .back-to-portfolio i {
+            transition: all 0.3s ease;
+        }
+
+        .back-to-portfolio:hover a {
+           background-color: #000000;
+	  color: #ffffff;
+	  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	  animation: scaleAnimation 0.5s ease-in-out;
+        }
+
+        .back-to-portfolio:hover i {
+            transform: rotate(-15deg);
+        }
+		
+		.blog-post-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .blog-post-summary {
+        margin-bottom: 0.7em;
+        padding: 12px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        }
+
+        .blog-post-summary:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-post-summary h2 {
+             margin-bottom: 0.5em;
+			 display: flex;
+        justify-content: space-between;
+        align-items: center;
+		font-size: 1.5em;
+        }
+		
+		
+
+        .back-to-list {
+			position: absolute;
+            top: 10px;
+            left: 20px;
+		}
+
+	.back-to-list a {
+		display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 20px;
+			gap: 10px;
+	}
+
+	.back-to-list i {
+		transition: all 0.3s ease;
+	}
+
+	.back-to-list:hover a {
+		background-color: #000000;
+	  color: #ffffff;
+	  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	  animation: scaleAnimation 0.5s ease-in-out;
+	}
+
+	.back-to-list:hover i {
+		transform: rotate(-15deg);
+	}
+	
+pre {
+    background: #000000 !important;
+    border: none !important;
+    border-radius: 8px !important; /* Added curved borders */
+     margin: 1.5em 0;
+    overflow: hidden; /* Ensure content doesn't overflow rounded corners */
+	 background-color: #f8f9fa;
+}
+
+code, .hljs {
+    background: #000000 !important;
+    border: none !important;
+	padding: 0 
+    margin: 0 
+	 background-color: #f1f3f5;
+	 border-radius: 3px;
+	 display: block; /* Make code a block element */
+}
+
+/* Ensure text is visible */
+code, .hljs, .hljs * {
+    color: #ffffff !important;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 0.88em;
+    line-height: 1.5;
+}
+
+/* Target the first line of code directly */
+    code::first-line, .hljs::first-line {
+        line-height: 0;
+    }
+	
+
+
+/* Syntax highlighting */
+.hljs-keyword { color: #ff79c6 !important; }
+.hljs-string { color: #f1fa8c !important; }
+.hljs-comment { color: #6272a4 !important; }
+.hljs-function, .hljs-title { color: #50fa7b !important; }
+.hljs-number { color: #bd93f9 !important; }
+.hljs-operator { color: #ff79c6 !important; }
+.hljs-class { color: #8be9fd !important; }
+.hljs-variable, .hljs-symbol, .hljs-attribute { color: #f8f8f2 !important; }
+.hljs-built_in, .hljs-literal { color: #ffb86c !important; }
+.hljs-type { color: #8be9fd !important; }
+
+/* Remove any potential borders or outlines */
+pre *, code *, .hljs * {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.copy-button {
+    position: absolute !important;
+    top: 5px !important;
+    right: 5px !important;
+    padding: 5px 10px !important;
+    background-color: #f1f3f5 !important;
+    border: none !important;
+    border-radius: 3px !important;
+    cursor: pointer !important;
+    font-size: 12px !important;
+    transition: background-color 0.3s ease !important;
+    color: #000000 !important;
+    z-index: 10 !important;
+}
+
+.copy-button:hover {
+    background-color: #e2e6ea !important;
+}
+
+.custom-separator {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        margin: 2em 0;
+        display: block;
+    }
+	
+
+	@media (max-width: 768px) {
+	   .section {
+		  margin-bottom: 40px;
+		  padding-bottom: 20px;
+		  border-bottom: 1px solid #e0e0e0;
+	   }
+
+	   .section:last-child {
+		  border-bottom: none;
+	   }
+
+	   .name-display {
+		  font-size: 2.8em;
+	   }
+
+	   .subtitle {
+		  font-size: 1.2em;
+	   }
+
+	   .skill-tag {
+		  font-size: 0.75em;
+		  padding: 4px 10px;
+	   }
+
+	   .skill-category {
+		  flex: 1 1 100%;
+	   }
+
+	   .skills-container {
+		  grid-template-columns: repeat(2, 1fr);
+	   }
+
+	   .projects-grid {
+		  grid-template-columns: 1fr;
+		  gap: 30px;
+	   }
+
+	   .project-card {
+		  height: auto;
+	   }
+
+	   .project-card:hover {
+		  transform: translateY(-5px);
+		  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	   }
+
+	   .project-title {
+		  font-size: 1.1em;
+	   }
+
+	   .project-description {
+		  font-size: 0.85em;
+		  margin-bottom: 10px;
+	   }
+
+	   .skill-tag-project {
+		  font-size: 0.75em;
+		  padding: 3px 8px;
+	   }
+
+	   .social-icons {
+		  gap: 20px;
+	   }
+
+	   .social-icons a {
+		  font-size: 1.3em;
+	   }
+	   
+	    .blog-link {
+		top: 10px;
+		right: 10px;
+	  }
+
+	   .blog-link a {
+		font-size: 0.9em;
+		padding: 4px 8px;
+	  }
+	  
+	  .blog-post-summary{
+	  margin-top: 20px;
+	  }
+
+	  
+	  .blog-post-summary h2 {
+                font-size: 1.1em;
+            }
+	  
+	}
+
+	@media (max-width: 480px) {
+	   .skills-container {
+		  grid-template-columns: 1fr;
+	   }
+
+	   .btn:hover {
+		  transform: translateY(-3px);
+		  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	   }
+
+	   .unnamed-section {
+		  margin-bottom: 50px;
+	   }
+	  }
+	 
+
+	   </style></head>
+
+
+<body>
+    <div id="root"></div>
+<script>
+const e = React.createElement;
+
+const CopyButton = ({ codeBlock }) => {
+    const [isCopied, setIsCopied] = React.useState(false);
+
+    const copyCode = () => {
+        const code = codeBlock.textContent;
+        navigator.clipboard.writeText(code).then(() => {
+            setIsCopied(true);
+            setTimeout(() => setIsCopied(false), 2000);
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    };
+
+    return e('button', 
+        { 
+            className: 'copy-button', 
+            onClick: copyCode 
+        }, 
+        isCopied ? 'Copied!' : 'Copy'
+    );
+};
+
+const HtmlContent = ({ content }) => {
+        const containerRef = React.useRef(null);
+
+        React.useEffect(() => {
+            if (containerRef.current) {
+                containerRef.current.innerHTML = content;
+                
+                // Highlight code blocks
+                containerRef.current.querySelectorAll('pre code').forEach((block) => {
+                    hljs.highlightBlock(block);
+                    const pre = block.parentNode;
+                    pre.style.position = 'relative';
+                    const buttonContainer = document.createElement('div');
+                    buttonContainer.style.position = 'absolute';
+                    buttonContainer.style.top = '5px';
+                    buttonContainer.style.right = '5px';
+                    pre.insertBefore(buttonContainer, pre.firstChild);
+                    ReactDOM.render(e(CopyButton, { codeBlock: block }), buttonContainer);
+                });
+
+                // Style custom separators
+                containerRef.current.querySelectorAll('hr.custom-separator').forEach((separator) => {
+                    separator.className = 'custom-separator';
+                });
+            }
+        }, [content]);
+
+        return e('div', { ref: containerRef });
+    };
+
+
+
+const BlogPostSummary = ({ title, date, excerpt, onClick }) => 
+    e('div', { className: 'blog-post-summary', onClick: onClick },
+        e('h2', null, 
+            title,
+            e('span', { className: 'blog-post-meta' }, date)
+        ),
+        e('p', null, excerpt)
+    );
+
+const BlogPost = ({ title, date, content }) => 
+    e('div', { className: 'blog-post' },
+        e('h2', null, title),
+        e('div', { className: 'blog-post-inside-meta' }, date),
+        e(HtmlContent, { content: content })
+    );
+
+const BackToPortfolio = () => 
+    e('div', { className: 'back-to-portfolio' },
+        e('a', { href: '../index.html' },
+            e('i', { className: 'fas fa-arrow-left' }),
+            e('span', null, 'Portfolio')
+        )
+    );
+
+const BackToList = ({ onClick }) => 
+    e('div', { className: 'back-to-list' },
+        e('a', { onClick: onClick },
+            e('i', { className: 'fas fa-arrow-left' }),
+            e('span', null, 'Back to List')
+        )
+    );
+
+
+const Footer = () => {
+    const currentYear = new Date().getFullYear();
+    
+    return e('footer', 
+        {
+            style: {
+                width: '100%',
+                textAlign: 'center',
+                padding: '10px 0',
+                fontSize: '0.8em',
+                color: '#999',
+                backgroundColor: 'transparent',
+                marginTop: 'auto'  // This pushes the footer to the bottom
+            }
+        },
+        `© ${currentYear} `,
+        e('a', 
+            {
+                href: '/',
+                style: {
+                    color: 'inherit',
+                    textDecoration: 'none',
+                    transition: 'color 0.3s ease'
+                },
+                onMouseEnter: (e) => e.target.style.color = '#3498db',
+                onMouseLeave: (e) => e.target.style.color = '#999'
+            },
+            'Mayank Devnani'
+        )
+    );
+};
+
+const PageWrapper = ({ children }) => {
+    return e('div', 
+        {
+            style: {
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: '100vh',  // Ensure the wrapper takes at least the full viewport height
+            }
+        },
+        children
+    );
+};
+
+const ContentWrapper = ({ children }) => {
+    return e('div', 
+        {
+            style: {
+                flex: 1,  // This allows the content to grow and push the footer down
+            }
+        },
+        children
+    );
+};
+
+const BlogPage = () => {
+    const [posts, setPosts] = React.useState([]);
+    const [selectedPost, setSelectedPost] = React.useState(null);
+
+    React.useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch('blog_posts/index.json');
+                const postList = await response.json();
+                
+                const loadedPosts = await Promise.all(postList.map(async (post) => {
+                    const contentResponse = await fetch(`blog_posts/${post.file}`);
+                    const content = await contentResponse.text();
+                    const bodyContent = content.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || content;
+                    return { ...post, content: bodyContent };
+                }));
+
+                setPosts(loadedPosts);
+            } catch (error) {
+                console.error('Failed to fetch posts:', error);
+            }
+        };
+
+        fetchPosts();
+    }, []);
+	
+
+    if (selectedPost) {
+        return e(PageWrapper, null,
+            e(ContentWrapper, null,
+                e('div', { className: 'blog-post-container' },
+                    e(BackToList, { onClick: () => setSelectedPost(null) }),
+                    e(BlogPost, selectedPost)
+                )
+            ),
+            e(Footer)
+        );
+    }
+
+    return e(PageWrapper, null,
+        e(ContentWrapper, null,
+            e('div', { className: 'container' },
+                e(BackToPortfolio),
+                posts.map((post, index) => 
+                    e(BlogPostSummary, {
+                        key: post.file,
+                        ...post,
+                        onClick: () => setSelectedPost(post)
+                    })
+                )
+            )
+        ),
+        e(Footer)
+    );
+};
+
+
+ReactDOM.render(e(BlogPage), document.getElementById('root'));
+</script>
+
+</body>
+
+</html>
