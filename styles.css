@@ -13,13 +13,14 @@ body {
 	}
 
 	.name-display {
-	   font-family: 'Inter', sans-serif;
-	   font-size: 100em;
-	   font-weight: 700;
-	   letter-spacing: -0.03em;
-	   margin-bottom: 0.2em;
-	   color: #2c3e50;
-	}
+       font-family: 'Fira Code', monospace;
+       font-size: 2.1em;
+       text-align: center;
+       margin-bottom: 10px;
+       white-space: nowrap; /* Prevent text wrapping */
+       overflow: hidden; /* Hide overflowing content */
+       text-overflow: ellipsis; /* Show ellipsis for overflowing text */
+    }
 
 	.container {
 	   max-width: 800px;
@@ -517,12 +518,6 @@ body {
 	  100% { transform: scale(1); }
 	}
 
-	.name-display {
-	   font-family: 'Fira Code', monospace;
-	   font-size: 2.1em;
-	   text-align: center;
-	   margin-bottom: 10px;
-	}
 
 	.name-char {
 	   display: inline-block;
@@ -600,7 +595,7 @@ body {
 	   }
 
 	   .name-display {
-		  font-size: 2.8em;
+		  font-size: 1.8em;
 	   }
 
 	   .subtitle {
@@ -682,4 +677,8 @@ body {
 	   .unnamed-section {
 		  margin-bottom: 50px;
 	   }
+	   
+	   .name-display {
+          font-size: 1.5em; /* Further reduce font size on smaller devices */
+       }
 	}
