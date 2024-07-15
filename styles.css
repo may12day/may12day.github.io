@@ -595,7 +595,7 @@ body {
 	   }
 
 	   .name-display {
-		  font-size: 1.8em;
+		  font-size: 1.9em;
 	   }
 
 	   .subtitle {
@@ -679,6 +679,6 @@ body {
 	   }
 	   
 	   .name-display {
-          font-size: 1.5em; /* Further reduce font size on smaller devices */
+          font-size: 1.6em; /* Further reduce font size on smaller devices */
        }
 	}
