@@ -254,11 +254,11 @@ const App = () => {
                 };
 
     const skillCategories = {
-        Languages: ["Python", "C++", "JavaScript", "Go", "Java"],
+        Languages: ["Python", "C", "C++", "JavaScript", "Go", "Java"],
         Frontend: ["HTML/CSS", "React", "Bootstrap", "Tkinter"],
         Backend: ["Flask", "Django"],
         Databases: ["MySQL", "MongoDB", "Firebase"],
-        "Cloud & DevOps": ["GCP", "Git", "CI/CD"],
+        "Cloud & DevOps": ["Docker", "Git", "CI/CD"],
 		"Machine Learning & AI" : ["PyTorch", "TensorFlow", "VTK", "Plotly"],
     };
     const workExperience = [
@@ -266,7 +266,7 @@ const App = () => {
             title: "Software Engineer (SWE)",
             company: "Palo Alto Networks",
             date: "Aug '24 - Present",
-            description: "-",
+            description: "Working on the PA series of Next Generation Firewall (NGFW), focusing on system programming in OS, where I've utilized device drivers to optimize system performance and security. Along the way, I've also collaborated on hardware-related tasks, which has given me a deeper understanding of how software and hardware components work together.",
         },
     ];
 
@@ -310,19 +310,27 @@ const App = () => {
     const projects = [
         {
             title: "DNS Traceroute",
-            description: "Command line tool to build the functionality of Traceroute (trace the route network packets)",
+            description: "Command line tool to build the functionality of Traceroute (trace the route network packets).",
             tags: ["Networking", "Parsing", "Network Protocols", "Python"],
             website: "#",
             github: { url: "#" },
             status: "In Progress",
         },
-		/* {
-            title: "Quack",
-            description: "A Discord bot focused on making Discord safer one server at a time.",
-            tags: ["TypeScript", "MySQL", "Drizzle", "Redis", "Kafka", "Go"],
+		{
+            title: "Small Python Interpreter",
+            description: "Explore the inner workings of the Python interpreter, from syntax checking to code execution.",
+            tags: ["Parsing", "SDE", "Python"],
+            website: "#",
+            github: { url: "#"},
+            status: "In Progress",
+        },
+        /*{
+            title: "Small Python Interpreter",
+            description: "Explore the inner workings of the Python interpreter, from syntax checking to code execution",
+            tags: ["Python", "SDE"],
             website: "#",
             github: { url: "#", stars: 1 },
-        }, */
+        },*/
     ];
 
     return (
